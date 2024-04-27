@@ -13,8 +13,32 @@
     <title>Hello from Electron renderer!</title>
   </head>
   <body>
-    <h1>Hello from Electron renderer!</h1>
-    <p>👋</p>
+    <form id="teamForm">
+      <input name="teamCsv" type="file" required/>
+      <label for="selectTeam-home">
+        <input
+          name="selectTeam"
+          id="selectTeam-home"
+          type="radio"
+          value="home"
+          checked
+        />
+        Home
+      </label>
+
+      <label for="selectTeam-away">
+        <input
+          name="selectTeam"
+          id="selectTeam-away"
+          type="radio"
+          value="away"
+        />
+        Away
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <button id="chooseJsonLocation">JSON Location</button>
+    <p id="choosenFilePath"></p>
     <p id="info"></p>
   </body>
   <script src="./renderer.js"></script>

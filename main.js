@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron/main'
+import { app, BrowserWindow, ipcMain, dialog } from 'electron/main'
 import path from 'node:path'
 const __dirname = import.meta.dirname;
 
@@ -15,7 +15,6 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-    ipcMain.handle('ping', () => 'pong')
   createWindow();
 
   app.on("activate", () => {
@@ -23,6 +22,10 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+  ipcMain.handle('chooseJsonLocation', async () => {
+    const location = await dialog.showOpenDialog({properties:['openDirectory']})
+    return location.filePaths
+})
 });
 
 app.on("window-all-closed", () => {
@@ -30,3 +33,4 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
+
