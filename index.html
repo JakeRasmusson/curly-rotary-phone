@@ -10,10 +10,11 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
+    <link href="./assets/styles/output.css" rel="stylesheet">
     <title>Hello from Electron renderer!</title>
   </head>
   <body>
-    <form id="teamForm">
+    <form class="text-red-500" id="teamForm">
       <input name="teamCsv" type="file" required/>
       <label for="selectTeam-home">
         <input
@@ -37,7 +38,7 @@
       </label>
       <button type="submit">Submit</button>
     </form>
-    <button id="chooseJsonLocation">JSON Location</button>
+    <button class="btn btn-secondary" id="chooseJsonLocation">JSON Location</button>
     <p id="choosenFilePath"></p>
     <p id="info"></p>
   </body>
