@@ -5,11 +5,13 @@ const filePathP = document.getElementById('choosenFilePath')
 const homeRosterBody = document.getElementById('homeRoster')
 const awayRosterBody = document.getElementById('awayRoster')
 const allPlayerObjects = []
+let jsonFilePath = ''
 
 chooseJsonLocationButton.addEventListener('click', async () => {
     const filePaths= await window.dataSaving.chooseJsonLocation()
     if (filePaths[0]) {
         filePathP.innerText = filePaths[0]
+        jsonFilePath = filePaths[0]
     }
 })
 
@@ -19,7 +21,6 @@ form.addEventListener('submit', (event) => {
     const teamName = selectTeam.value
     const file = teamCsv.files[0]
 
-    console.log(selectTeam.value)
     if (!file || !teamName) {
         alert('Select File and team name')
         return
@@ -80,13 +81,12 @@ const createObjects = (objectReady, team) => {
 
 const renderPlayerCards = (players, team) => {
     let tableBody = ''
-    console.log(team)
     if (team == 'away'){
-        console.log('hi')
         tableBody = awayRosterBody
     } else {
         tableBody = homeRosterBody
     }
+    tableBody.innerHTML = ''
     players.forEach(player => {
         const playerId = player.playername.replaceAll(' ','')
         const playerLi = document.createElement('div')
