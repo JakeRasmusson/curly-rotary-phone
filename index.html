@@ -1,55 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <link href="./assets/styles/output.css" rel="stylesheet">
-    <title>Data Program</title>
-  </head>
-  <body>
-    <form class="text-red-500" id="teamForm">
-      <input name="teamCsv" type="file" required/>
-      <label for="selectTeam-home">
-        <input
-          name="selectTeam"
-          id="selectTeam-home"
-          type="radio"
-          value="home"
-          checked
-        />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <link href="./assets/styles/output.css" rel="stylesheet">
+  <title>Data Program</title>
+</head>
+
+<body>
+  <div class=" p-0 navbar bg-base-100 flex justify-between">    
+    <form class="text-red-500 bg-gray-500 bg-opacity-15" id="teamForm">
+      <input name="teamCsv" type="file" required />
+      <label class="mx-2" for="selectTeam-home">
+        <input name="selectTeam" id="selectTeam-home" type="radio" value="home" checked />
         Home
       </label>
-
-      <label for="selectTeam-away">
-        <input
-          name="selectTeam"
-          id="selectTeam-away"
-          type="radio"
-          value="away"
-        />
+      <label class="mx-2" for="selectTeam-away">
+        <input name="selectTeam" id="selectTeam-away" type="radio" value="away" />
         Away
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit" class="btn btn-primary ml-2">Submit</button>
     </form>
-    <button class="btn btn-secondary" id="chooseJsonLocation">JSON Location</button>
-    <p id="choosenFilePath"></p>
-    <p id="info"></p>
-    <div class="overflow-x-auto">
+    <div class="pr-2">
+      <button class="btn btn-secondary mr-2" id="chooseJsonLocation">JSON Location</button>
+      <p id="choosenFilePath"></p>
+    </div>
+  </div>
+  <div class="flex h-[85vh] border">
+    <div class="flex-6 min-w-[85%]"><p>hello</p></div>
+    <div class="border h-full flex-1 flex flex-col max-w-[15%]">
+      <div class="overflow-x-auto h-[50%]">
         <table class="table table-zebra">
           <!-- head -->
           <thead>
             <tr>
               <th></th>
+              <th>Number</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Position</th>
+              <th>Grade</th>
             </tr>
           </thead>
           <tbody id="homeRoster">
@@ -58,15 +49,16 @@
           </tbody>
         </table>
       </div>
-      <div class="overflow-x-auto">
+      <div class="overflow-x-auto h-[50%]">
         <table class="table table-zebra">
           <!-- head -->
           <thead>
             <tr>
               <th></th>
+              <th>Number</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Position</th>
+              <th>Grade</th>
             </tr>
           </thead>
           <tbody id="awayRoster">
@@ -75,6 +67,9 @@
           </tbody>
         </table>
       </div>
-  </body>
-  <script src="./renderer.js"></script>
+    </div>
+  </div>
+</body>
+<script src="./renderer.js"></script>
+
 </html>
