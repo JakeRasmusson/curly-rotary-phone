@@ -10,10 +10,18 @@ let jsonFilePath = ''
 chooseJsonLocationButton.addEventListener('click', async () => {
     const filePaths= await window.dataSaving.chooseJsonLocation()
     if (filePaths[0]) {
-        filePathP.innerText = filePaths[0]
-        jsonFilePath = filePaths[0]
+        jsonFilePath = filePaths[0] +'\\data.json'
+        filePathP.innerText = jsonFilePath
+        // const saveJson = await window.dataSaving.createJson(filePaths[0])
+        // console.log(saveJson)
+        updateJson()
     }
 })
+
+const updateJson = async () => {
+    const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : allPlayerObjects}
+    const update = await window.dataSaving.updateJson(jsonObject)
+}
 
 form.addEventListener('submit', (event) => {
     event.preventDefault()

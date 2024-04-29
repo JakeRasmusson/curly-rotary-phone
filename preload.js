@@ -11,5 +11,6 @@ contextBridge.exposeInMainWorld('versions', {
 
 
 contextBridge.exposeInMainWorld('dataSaving', {
-    chooseJsonLocation: () => ipcRenderer.invoke("chooseJsonLocation")
+    chooseJsonLocation: () => ipcRenderer.invoke("chooseJsonLocation"),
+    updateJson: (data) => ipcRenderer.send("updateJson" , data)
 })

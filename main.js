@@ -1,5 +1,6 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron/main'
-import path from 'node:path'
+import { app, BrowserWindow, ipcMain, dialog } from "electron/main";
+import path from "node:path";
+import fs from 'fs';
 const __dirname = import.meta.dirname;
 
 const createWindow = () => {
@@ -7,8 +8,8 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-        preload: path.join(__dirname, 'preload.js')
-      }
+      preload: path.join(__dirname, "preload.js"),
+    },
   });
 
   win.loadFile("index.html");
@@ -22,10 +23,25 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
-  ipcMain.handle('chooseJsonLocation', async () => {
-    const location = await dialog.showOpenDialog({properties:['openDirectory']})
-    return location.filePaths
-})
+  ipcMain.handle("chooseJsonLocation", async () => {
+    const location = await dialog.showOpenDialog({
+      properties: ["openDirectory"],
+    });
+    fs.writeFile(`${location.filePaths[0]}/data.json`,"", function (err) {
+        if (err) throw err;
+        console.log("File Created");
+  });
+  return location.filePaths;
+  });
+  ipcMain.on("updateJson", async (event, data) => {
+    console.log(data.playerObjects)
+    fs.appendFile(data.jsonFilePath, JSON.stringify(data.playerObjects), function (err) {
+        if (err) throw err;
+        console.log('File Updated')
+    })
+    return "hi"
+  })
+
 });
 
 app.on("window-all-closed", () => {
@@ -33,4 +49,3 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
-
