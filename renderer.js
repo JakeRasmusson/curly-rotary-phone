@@ -4,7 +4,7 @@ const chooseJsonLocationButton = document.getElementById('chooseJsonLocation')
 const filePathP = document.getElementById('choosenFilePath')
 const homeRosterBody = document.getElementById('homeRoster')
 const awayRosterBody = document.getElementById('awayRoster')
-const allPlayerObjects = []
+const allPlayerObjects = {}
 let jsonFilePath = ''
 
 chooseJsonLocationButton.addEventListener('click', async () => {
@@ -43,6 +43,52 @@ form.addEventListener('submit', (event) => {
     reader.readAsText(file)
 })
 
+class Player{
+    jerseyNumber : number
+    constructor(jerseyNumber, name, position, grade){
+        this.jerseyNumber = jerseyNumber
+        this.name = name
+        this.position = position
+        this.grade = grade
+    }
+}
+
+class SkillPosition extends Player{
+    receptions      : number
+    touchdowns      : number
+    recYards        : number
+    rushYards       : number
+    tackles         : number
+    interceptions   : number
+    passDefended    : number
+
+    constructor(jerseyNumber, name, position, grade,receptions, touchdowns, recYards, rushYards, tackles, interceptions, passDefended){
+        super(jerseyNumber, name, position, grade)
+        this.receptions = receptions
+        this.touchdowns = touchdowns
+        this.recYards  = recYards
+        this.rushYards = rushYards
+        this.tackles = tackles
+        this.interceptions = interceptions
+        this.passDefended = passDefended
+    }
+
+}
+
+class NonSkillPosition extends Player{
+    pancake         : number
+    sack            : number
+    tackle          : number
+    tackleForLoss   : number
+    constructor(jerseyNumber, name, position, grade,pancake, sack, tackle, tackleForLoss)
+        super(jerseyNumber,name,position,grade)
+}
+
+
+
+
+
+
 
 const parseData = (data, team) => {
     const rowSplit = data.split('\n')
@@ -70,13 +116,16 @@ const createObjects = (objectReady, team) => {
     const playerObjects = []
     objectReady.forEach(player => {
         const [ number, name, position, grade] = player
-        playerObjects.push({
-            playername: `${number} ${team}`,
-                number,
-                name,
-                position,
-                grade
-            })
+        switch (position.split(1)) {
+            case "OL":
+                playerObjects.push({`${number} ${team}`:new NonSkillPosition(number, name, position, grade)})
+                break;
+        
+            default:
+                playerObjects.push({`${number} ${team}`:new SkillPosition(number, name, position, grade)})
+                break;
+        }
+
     })
     allPlayerObjects.push(playerObjects)
     renderPlayerCards(playerObjects, team)
