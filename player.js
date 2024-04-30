@@ -1,163 +1,130 @@
-// function Player(number, name, position, grade, playerStats) {
-//     this.number = number
-//     this.name = name
-//     this.position = position
-//     this.grade = grade
 
-//     this.playerStats = playerStats
-//   }
+const allPlayerObjects = []
 class Player{
-    constructor(number, name, position, grade){
-        this.number = number
-        this.name = name
-        this.position = position
-        this.grade = grade
+    constructor(jerseyNumber, name, position, grade, team){
+        this.jerseyNumber   = jerseyNumber
+        this.name           = name
+        this.position       = position
+        this.grade          = grade
+        this.team           = team
+        this.playerId       = jerseyNumber + team
     }
 }
 
 class SkillPosition extends Player{
-    constructor(receptions, touchdowns, recYards, rushYards, tackles, int, passDefended){
-        super(number, name, position, grade)
+    // receptions      = 0
+    // touchdowns      = 0
+    // recYards        = 0
+    // rushYards       = 0
+    // tackles         = 0
+    // interceptions   = 0
+    // passDefended    = 0
+
+    constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, tackles, interceptions, passDefended, rushAttempts){
+        super(jerseyNumber, name, position, grade, team)
+        this.rushTouchdowns     = rushTouchdowns    || 0
+        this.rushAttempts       = rushAttempts      || 0
+        this.rushYards          = rushYards         || 0
+        this.tackles            = tackles           || 0
+        this.interceptions      = interceptions     || 0
+        this.passDefended       = passDefended      || 0
     }
 
 }
-
-class NonSkillPosition extends Player{
-    constructor(pancake, sack, tackle, tackleForLoss)
-        super(number,name,position,grade)
+class QBPosition extends SkillPosition{
+    constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, interceptions, passAtt, passComp, passYards, passTouchdowns, tackles, passDefended, rushAttempts){
+        super(jerseyNumber, name, position, grade, team, rushYards, interceptions, rushAttempts, rushTouchdowns, passDefended, tackles)
+        this.passAtt            = passAtt            || 0
+        this.passComp           = passComp           || 0
+        this.passYards          = passYards          || 0
+        this.passTouchdowns     = passTouchdowns     || 0
+    }
 }
 
-// const player = {
-//   {
-//     playername: '84 away',
-//     number: '84',
-//     name: 'Mason Mitacek',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '32 away',
-//     number: '32',
-//     name: 'Jordan Oppenneer',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '33 away',
-//     number: '33',
-//     name: 'Asher Pauley',
-//     position: 'RB/LB',
-//     grade: ''
-//   },
-//   {
-//     playername: '85 away',
-//     number: '85',
-//     name: 'Espen Pieroni',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '17 away',
-//     number: '17',
-//     name: 'DQ Pinter',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '85 away',
-//     number: '85',
-//     name: 'Matteo Ruffolo',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '20 away',
-//     number: '20',
-//     name: 'Rocco Ruffolo',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '22 away',
-//     number: '22',
-//     name: 'Seth Scheele',
-//     position: 'RB/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '9 away',
-//     number: '9',
-//     name: 'Samuel Sippy',
-//     position: 'TE/LB',
-//     grade: ''
-//   },
-//   {
-//     playername: '23 away',
-//     number: '23',
-//     name: 'tynan Skinner',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '2 away',
-//     number: '2',
-//     name: 'Ruslan St. Germain',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '62 away',
-//     number: '62',
-//     name: 'Brandon Stewart',
-//     position: 'OL/DL',
-//     grade: ''
-//   },
-//   {
-//     playername: '38 away',
-//     number: '38',
-//     name: 'Landon Taylor',
-//     position: 'RB/LB',
-//     grade: ''
-//   },
-//   {
-//     playername: '11 away',
-//     number: '11',
-//     name: 'Joshua Topercer',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '64 away',
-//     number: '64',
-//     name: 'Jacob Ward',
-//     position: 'OL/DL',
-//     grade: ''
-//   },
-//   {
-//     playername: '21 away',
-//     number: '21',
-//     name: 'Sentrell Watts',
-//     position: 'WR/DB',
-//     grade: ''
-//   },
-//   {
-//     playername: '42 away',
-//     number: '42',
-//     name: 'Mason Wierzbicki',
-//     position: 'TE/DL',
-//     grade: ''
-//   },
-//   {
-//     playername: '61 away',
-//     number: '61',
-//     name: 'Joshua Yehle',
-//     position: 'OL/DL',
-//     grade: ''
-//   },
-//   {
-//     playername: '46 away',
-//     number: '46',
-//     name: 'Garett Zagame',
-//     position: 'RB/LB',
-//     grade: ''
-//   }}
+class NonQbSkillPosition extends SkillPosition{
+    constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, tackles, interceptions, passDefended, rushAttempts, receptions, recYards, drops, recTouchdowns){
+        super(jerseyNumber, name, position, grade, team, rushYards, interceptions, rushTouchdowns, rushAttempts, rushTouchdowns, passDefended, tackles)
+        this.receptions         = receptions        || 0
+        this.recYards           = recYards          || 0
+        this.drops              = drops             || 0
+        this.recTouchdowns      = recTouchdowns     || 0
+    }
+}
+
+class NonSkillPosition extends Player{
+    // pancake         = 0
+    // sack            = 0
+    // tackle          = 0
+    // tackleForLoss   = 0
+
+    constructor(jerseyNumber, name, position, grade, team, pancake, sack, tackle, tackleForLoss){
+        super(jerseyNumber,name,position,grade, team)
+        this.pancake            = pancake           || 0
+        this.sack               = sack              || 0
+        this.tackle             = tackle            || 0
+        this.tackleForLoss      = tackleForLoss     || 0
+    }
+}
+
+
+
+
+
+
+
+const parseData = (data, team) => {
+    const rowSplit = data.split('\n')
+    const columnSplit = []
+    const players = []
+    rowSplit.forEach(row => {
+        let noQuote = row.replaceAll('"', '')
+        columnSplit.push(noQuote.split(','))
+    });
+    columnSplit.forEach(column => {
+         let playerNumber = parseInt(column[0])
+        if (!isNaN(playerNumber)) {
+            players.push(column)
+        } 
+    } )
+    console.log(players)
+    prepareForObject(players, team)
+}
+
+const prepareForObject = (players, team) => {
+    const slicedPlayers = players.map(player => player.slice(0,4))
+    createObjects(slicedPlayers, team)
+}
+
+const createObjects = (objectReady, team) => {
+    const playerObjects = []
+    let constructedPlayer = ''
+    objectReady.forEach(player => {
+        const [ number, name, position, grade] = player
+        let playerId = number + team
+        console.log(playerId)
+        let offPosition = position.slice(0,2)
+        switch (offPosition) {
+            case "OL":
+                player = new NonSkillPosition(number, name, position, grade, team)
+                playerObjects.push(player)
+                break;
+            case "QB":
+                constructedPlayer = new QBPosition(number, name, position, grade, team)
+                playerObjects.push((constructedPlayer))
+                break;
+            default:
+                constructedPlayer = new NonQbSkillPosition(number, name, position, grade, team)
+                playerObjects.push(constructedPlayer)
+                break;
+        }
+        console.log(playerObjects)
+
+    })
+    allPlayerObjects.push(playerObjects)
+    console.log(playerObjects)
+    // renderPlayerCards(playerObjects, team)
+}
+
+const playerArrays = [[15,"Jim Jimmy","OL\\DL",12],[43,"Hello there","WR\\RB",11],[68,"Jake James","OL\\DL",9],[88,"Jamie McMurray","QB\\LB",12],[81,"James Jameson","TE\\LB",12]]
+
+createObjects(playerArrays, 'home')
