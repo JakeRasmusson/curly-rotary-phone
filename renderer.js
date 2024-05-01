@@ -6,20 +6,22 @@ const homeRosterBody = document.getElementById('homeRoster')
 const awayRosterBody = document.getElementById('awayRoster')
 const allPlayerObjects = []
 let jsonFilePath = ''
+const dirtyPlayers = []
 
 chooseJsonLocationButton.addEventListener('click', async () => {
     const filePaths= await window.dataSaving.chooseJsonLocation()
     if (filePaths[0]) {
         jsonFilePath = filePaths[0] +'\\data.json'
         filePathP.innerText = jsonFilePath
-        // const saveJson = await window.dataSaving.createJson(filePaths[0])
-        // console.log(saveJson)
-        updateJson()
+        saveJson(allPlayerObjects)
     }
 })
-
-const updateJson = async () => {
-    const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : allPlayerObjects}
+const saveJson = async (changedPlayers) => {
+    const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : changedPlayers}
+    const update = await window.dataSaving.saveJson(jsonObject)
+}
+const updateJson = async (changedPlayers) => {
+    const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : changedPlayers}
     const update = await window.dataSaving.updateJson(jsonObject)
 }
 
@@ -43,6 +45,8 @@ form.addEventListener('submit', (event) => {
     reader.readAsText(file)
 })
 
+
+//Data parsing and player object creation
 class Player{
     constructor(jerseyNumber, name, position, grade, team){
         this.jerseyNumber   = jerseyNumber
@@ -110,13 +114,6 @@ class NonSkillPosition extends Player{
 }
 
 
-
-
-
-
-
-
-
 const parseData = (data, team) => {
     const rowSplit = data.split('\n')
     const columnSplit = []
@@ -150,23 +147,23 @@ const createObjects = (objectReady, team) => {
         let offPosition = position.slice(0,2)
         switch (offPosition) {
             case "OL":
-                player = new NonSkillPosition(number, name, position, grade, team)
-                playerObjects.push(player)
+                constructedPlayer = new NonSkillPosition(number, name, position, grade, team)
+                playerObjects.push(constructedPlayer)
+                allPlayerObjects.push(constructedPlayer)
                 break;
             case "QB":
                 constructedPlayer = new QBPosition(number, name, position, grade, team)
-                console.log(constructedPlayer)
                 playerObjects.push((constructedPlayer))
+                allPlayerObjects.push(constructedPlayer)
                 break;
             default:
                 constructedPlayer = new NonQbSkillPosition(number, name, position, grade, team)
                 playerObjects.push(constructedPlayer)
+                allPlayerObjects.push(constructedPlayer)
                 break;
         }
 
     })
-    allPlayerObjects.push(playerObjects)
-    
     renderPlayerCards(playerObjects, team)
 }
 
@@ -174,7 +171,7 @@ const createObjects = (objectReady, team) => {
 
 
 
-
+// Dom Rendering
 const renderPlayerCards = (players, team) => {
     let tableBody = ''
     if (team == 'away'){
@@ -197,5 +194,37 @@ const renderPlayerCards = (players, team) => {
         playerLi.id = `${playerId}`
         tableBody.appendChild(playerLi)
 
+    });
+}
+
+
+//Update Stats
+class addStats{
+
+    constructor(playerStats, plusEvent) {
+        this.player = playerStats
+        this.plusEvent = plusEvent
+        this.plusOneAddEvents()
+    }
+
+    plusOneAddEvents() {
+        const stat = Object.keys(this.plusEvent)
+        this.player[stat] += this.plusEvent[stat]
+        console.log(this.player)
+        if (dirtyPlayers.includes(this.player)) {
+            updateJson(dirtyPlayers)
+        } else {
+        dirtyPlayers.push(this.player)
+        updateJson(dirtyPlayers)
+        }
+    }
+}
+
+const findPlayer = (playerEventId, statData) => {
+    allPlayerObjects.forEach(player => {
+        if (player.playerId == playerEventId) {
+            const newAdd = new addStats(player, statData)
+        }
+        
     });
 }

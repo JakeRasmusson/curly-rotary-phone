@@ -34,8 +34,33 @@ app.whenReady().then(() => {
   return location.filePaths;
   });
   ipcMain.on("updateJson", async (event, data) => {
+    fs.readFile(data.jsonFilePath, 'utf-8', (err, readData) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      const readDataArray = JSON.parse(readData)
+      const dirtyPlayers = data.playerObjects
+      readDataArray.forEach(player => {
+        if (dirtyPlayers.includes(player)) {
+          player = dirtyPlayers[player]
+          console.log(player)
+        }
+        
+      });
+      console.log(readDataArray)
+    })
+
+    // fs.writeFile(data.jsonFilePath, JSON.stringify(data.playerObjects), function (err) {
+    //     if (err) throw err;
+    //     console.log('File Updated')
+    // })
+    return "hi"
+  })
+
+  ipcMain.on("saveJson", async (event, data) => {
     console.log(data.playerObjects)
-    fs.appendFile(data.jsonFilePath, JSON.stringify(data.playerObjects), function (err) {
+    fs.writeFile(data.jsonFilePath, JSON.stringify(data.playerObjects), function (err) {
         if (err) throw err;
         console.log('File Updated')
     })

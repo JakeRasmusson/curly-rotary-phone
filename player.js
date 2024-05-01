@@ -12,13 +12,6 @@ class Player{
 }
 
 class SkillPosition extends Player{
-    // receptions      = 0
-    // touchdowns      = 0
-    // recYards        = 0
-    // rushYards       = 0
-    // tackles         = 0
-    // interceptions   = 0
-    // passDefended    = 0
 
     constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, tackles, interceptions, passDefended, rushAttempts){
         super(jerseyNumber, name, position, grade, team)
@@ -52,10 +45,6 @@ class NonQbSkillPosition extends SkillPosition{
 }
 
 class NonSkillPosition extends Player{
-    // pancake         = 0
-    // sack            = 0
-    // tackle          = 0
-    // tackleForLoss   = 0
 
     constructor(jerseyNumber, name, position, grade, team, pancake, sack, tackle, tackleForLoss){
         super(jerseyNumber,name,position,grade, team)
