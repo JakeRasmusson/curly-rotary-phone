@@ -40,15 +40,14 @@ app.whenReady().then(() => {
         return
       }
       const readDataArray = JSON.parse(readData)
-      const dirtyPlayers = data.playerObjects
-      readDataArray.forEach(player => {
-        if (dirtyPlayers.includes(player)) {
-          player = dirtyPlayers[player]
-          console.log(player)
+      const dirtyPlayer = data.playerObject
+      const dirtyPlayerId = data.changedPlayerId
+      readDataArray.forEach(item => {
+        if (item.playerId == dirtyPlayerId) {
+           //Todo ask jsoh for help replace curret json player with updates frmo front end
         }
         
       });
-      console.log(readDataArray)
     })
 
     // fs.writeFile(data.jsonFilePath, JSON.stringify(data.playerObjects), function (err) {

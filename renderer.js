@@ -20,8 +20,8 @@ const saveJson = async (changedPlayers) => {
     const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : changedPlayers}
     const update = await window.dataSaving.saveJson(jsonObject)
 }
-const updateJson = async (changedPlayers) => {
-    const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : changedPlayers}
+const updateJson = async (changedPlayer, changedPlayerId) => {
+    const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObject' : changedPlayer, 'changedPlayerId': changedPlayerId}
     const update = await window.dataSaving.updateJson(jsonObject)
 }
 
@@ -215,7 +215,7 @@ class addStats{
             updateJson(dirtyPlayers)
         } else {
         dirtyPlayers.push(this.player)
-        updateJson(dirtyPlayers)
+        updateJson(this.player, this.player.playerId)
         }
     }
 }
