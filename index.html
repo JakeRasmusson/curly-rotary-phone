@@ -10,62 +10,265 @@
 </head>
 
 <body>
-  <div class=" p-0 navbar bg-base-100 flex justify-between">    
-    <form class="text-red-500 bg-gray-500 bg-opacity-15" id="teamForm">
-      <input name="teamCsv" type="file" required />
-      <label class="mx-2" for="selectTeam-home">
-        <input name="selectTeam" id="selectTeam-home" type="radio" value="home" checked />
-        Home
-      </label>
-      <label class="mx-2" for="selectTeam-away">
-        <input name="selectTeam" id="selectTeam-away" type="radio" value="away" />
-        Away
-      </label>
-      <button type="submit" class="btn btn-primary ml-2">Submit</button>
-    </form>
-    <div class="pr-2">
-      <button class="btn btn-secondary mr-2" id="chooseJsonLocation">JSON Location</button>
-      <p id="choosenFilePath"></p>
-    </div>
-  </div>
-  <div class="flex h-[85vh] border">
-    <div class="flex-6 min-w-[85%]"><p>hello</p></div>
-    <div class="border h-full flex-1 flex flex-col max-w-[15%]">
-      <div class="overflow-x-auto h-[50%]">
-        <table class="table table-zebra">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th></th>
-              <th>Number</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Grade</th>
-            </tr>
-          </thead>
-          <tbody id="homeRoster">
-            <!-- row 1 -->
-
-          </tbody>
-        </table>
+  <div class="h-screen">
+    <div class="h-[10%] p-0 navbar bg-base-100 flex justify-between">
+      <form class="text-red-500 bg-gray-500 bg-opacity-15" id="teamForm">
+        <input name="teamCsv" type="file" required />
+        <label class="mx-2" for="selectTeam-home">
+          <input name="selectTeam" id="selectTeam-home" type="radio" value="home" checked />
+          Home
+        </label>
+        <label class="mx-2" for="selectTeam-away">
+          <input name="selectTeam" id="selectTeam-away" type="radio" value="away" />
+          Away
+        </label>
+        <button type="submit" class="btn btn-primary ml-2">Submit</button>
+      </form>
+      <div class="pr-2">
+        <button class="btn btn-secondary mr-2" id="chooseJsonLocation">JSON Location</button>
+        <p id="choosenFilePath"></p>
       </div>
-      <div class="overflow-x-auto h-[50%]">
-        <table class="table table-zebra">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th></th>
-              <th>Number</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Grade</th>
-            </tr>
-          </thead>
-          <tbody id="awayRoster">
-            <!-- row 1 -->
-
-          </tbody>
-        </table>
+    </div>
+    <div class="flex h-[90%] border">
+      <div class="flex flex-col flex-6 min-w-[85%] bg-green-700 border-4 border-white">
+        <div class="team-box flex-1 grid grid-cols-11 grid-rows-3 gap-2 p-2 border-b-8 border-white" id="homeTeam">
+          <div class="">1</div>
+          <div class="border-b-8 border-white">2</div>
+          <div class="">3</div>
+          <div class="">4</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">RB1</h2>
+              <p class="py-1 text-center">Home 22</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">6</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">RB2</h2>
+              <p class="py-1 text-center">Home 24</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">8</div>
+          <div class="">9</div>
+          <div class="border-b-8 border-white">10</div>
+          <div class="">11</div>
+          <div class="">12</div>
+          <div class="border-b-8 border-white">13</div>
+          <div class="">14</div>
+          <div class="">15</div>
+          <div class="">16</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">QB</h2>
+              <p class="py-1 text-center">Home 4</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">18</div>
+          <div class="">19</div>
+          <div class="">20</div>
+          <div class="border-b-8 border-white">21</div>
+          <div class="">22</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">WR1</h2>
+              <p class="py-1 text-center">Home 80</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">24</div>
+          <div class="">25</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">RT</h2>
+              <p class="py-1 text-center">Home 77</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">RG</h2>
+              <p class="py-1 text-center">Home 68</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">C</h2>
+              <p class="py-1 text-center">Home 66</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">LG</h2>
+              <p class="py-1 text-center">Home 67</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">LT</h2>
+              <p class="py-1 text-center">Home 75</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">TE</h2>
+              <p class="py-1 text-center">Home 88</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+          <div class="">32</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
+              <h2 class="border-b-2 border-blue-500 text-center">WR2</h2>
+              <p class="py-1 text-center">Home 85</p>
+              <p class="py-1 text-center">Jake Rasmussen</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-box flex-1 grid grid-cols-11 grid-rows-3 gap-2 p-2 border-t-8 border-white" id="awayTeam">
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">CB</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">35</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">37</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">39</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">41</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">43</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">CB</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">45</div>
+          <div class="border-t-8 border-white">46</div>
+          <div class="">47</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">LB</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">49</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">LB</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">51</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">LB</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">53</div>
+          <div class="border-t-8 border-white">54</div>
+          <div class="">55</div>
+          <div class="">56</div>
+          <div class="border-t-8 border-white">57</div>
+          <div class="">58</div>
+          <div class="">59</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">FS</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">61</div>
+          <div class="">
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
+              <h2 class="border-b-2 border-red-500 text-center">SS</h2>
+              <p class="py-1 text-center">Away 4</p>
+              <p class="py-1 text-center">Kent Tuneberg</p>
+            </div>
+          </div>
+          <div class="">63</div>
+          <div class="">64</div>
+          <div class="border-t-8 border-white">65</div>
+          <div class="">66</div>
+        </div>
+      </div>
+      <div class="border h-full flex-1 flex flex-col max-w-[15%]">
+        <div class="overflow-x-auto h-[50%]">
+          <table class="table table-zebra">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th></th>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody id="homeRoster">
+              <!-- row 1 -->
+            </tbody>
+          </table>
+        </div>
+        <div class="overflow-x-auto h-[50%]">
+          <table class="table table-zebra">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th></th>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody id="awayRoster">
+              <!-- row 1 -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
