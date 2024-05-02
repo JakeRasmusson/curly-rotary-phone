@@ -6,7 +6,7 @@ const homeRosterBody = document.getElementById('homeRoster')
 const awayRosterBody = document.getElementById('awayRoster')
 const allPlayerObjects = {}
 let jsonFilePath = ''
-const dirtyPlayers = []
+// const dirtyPlayers = []
 
 chooseJsonLocationButton.addEventListener('click', async () => {
     const filePaths= await window.dataSaving.chooseJsonLocation()
@@ -16,10 +16,13 @@ chooseJsonLocationButton.addEventListener('click', async () => {
         saveJson(allPlayerObjects)
     }
 })
+
+//Init save for whole object
 const saveJson = async (changedPlayers) => {
     const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : changedPlayers}
     const update = await window.dataSaving.saveJson(jsonObject)
 }
+//Only sends changed playerid and the stat changed
 const updateJson = async (changedPlayerId, changedPlayerEvent) => {
     const jsonObject = {'jsonFilePath' : jsonFilePath,'changedPlayerId': changedPlayerId, 'changedPlayerEvent':changedPlayerEvent}
     const update = await window.dataSaving.updateJson(jsonObject)
@@ -191,33 +194,3 @@ const renderPlayerCards = (players, team) => {
 }
 
 
-//Update Stats
-class addStats{
-
-    constructor(playerStats, plusEvent) {
-        this.player = playerStats
-        this.plusEvent = plusEvent
-        this.plusOneAddEvents()
-    }
-
-    plusOneAddEvents() {
-        const stat = Object.keys(this.plusEvent)
-        this.player[stat] += this.plusEvent[stat]
-        console.log(this.player)
-        if (dirtyPlayers.includes(this.player)) {
-            updateJson(dirtyPlayers)
-        } else {
-        dirtyPlayers.push(this.player)
-        updateJson(this.player, this.player.playerId)
-        }
-    }
-}
-
-const findPlayer = (playerEventId, statData) => {
-    allPlayerObjects.forEach(player => {
-        if (player.playerId == playerEventId) {
-            const newAdd = new addStats(player, statData)
-        }
-        
-    });
-}
