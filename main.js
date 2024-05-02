@@ -34,28 +34,28 @@ app.whenReady().then(() => {
   return location.filePaths;
   });
   ipcMain.on("updateJson", async (event, data) => {
-    fs.readFile(data.jsonFilePath, 'utf-8', (err, readData) => {
+    fs.readFile(data.jsonFilePath, 'utf-8', (err, savedRoster) => {
       if (err) {
         console.error(err)
         return
       }
-      const readDataArray = JSON.parse(readData)
-      const dirtyPlayers = data.playerObject
-      console.log(dirtyPlayers)
-      readDataArray.forEach(item => {
-        if (item.playerId == dirtyPlayerId) {
-           //Todo ask josh for help replace curret json player with updates frmo front end
-        }
-        
-      });
+      const savedRosterParsed = JSON.parse(savedRoster)
+      const dirtyPlayer = data.changedPlayerId
+      const dirtyEvent = data.changedPlayerEvent
+      savedRosterParsed[dirtyPlayer] = { 
+        ...savedRosterParsed[dirtyPlayer],
+        ...dirtyEvent
+      }
+      
+      console.log(savedRosterParsed)
+      fs.writeFile(data.jsonFilePath, JSON.stringify(savedRosterParsed), function (err) {
+        if (err) throw err;
+        console.log('File Updated')
+     })
     })
 
-    // fs.writeFile(data.jsonFilePath, JSON.stringify(data.playerObjects), function (err) {
-    //     if (err) throw err;
-    //     console.log('File Updated')
-    // })
-    return "hi"
   })
+
 
   ipcMain.on("saveJson", async (event, data) => {
     console.log(data.playerObjects)
