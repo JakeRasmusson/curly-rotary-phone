@@ -4,7 +4,7 @@ const chooseJsonLocationButton = document.getElementById('chooseJsonLocation')
 const filePathP = document.getElementById('choosenFilePath')
 const homeRosterBody = document.getElementById('homeRoster')
 const awayRosterBody = document.getElementById('awayRoster')
-const allPlayerObjects = []
+const allPlayerObjects = {}
 let jsonFilePath = ''
 const dirtyPlayers = []
 
@@ -20,8 +20,8 @@ const saveJson = async (changedPlayers) => {
     const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObjects' : changedPlayers}
     const update = await window.dataSaving.saveJson(jsonObject)
 }
-const updateJson = async (changedPlayer, changedPlayerId) => {
-    const jsonObject = {'jsonFilePath' : jsonFilePath, 'playerObject' : changedPlayer, 'changedPlayerId': changedPlayerId}
+const updateJson = async (changedPlayerId, changedPlayerEvent) => {
+    const jsonObject = {'jsonFilePath' : jsonFilePath,'changedPlayerId': changedPlayerId, 'changedPlayerEvent':changedPlayerEvent}
     const update = await window.dataSaving.updateJson(jsonObject)
 }
 
@@ -59,13 +59,7 @@ class Player{
 }
 
 class SkillPosition extends Player{
-    // receptions      = 0
-    // touchdowns      = 0
-    // recYards        = 0
-    // rushYards       = 0
-    // tackles         = 0
-    // interceptions   = 0
-    // passDefended    = 0
+
 
     constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, tackles, interceptions, passDefended, rushAttempts){
         super(jerseyNumber, name, position, grade, team)
@@ -143,23 +137,22 @@ const createObjects = (objectReady, team) => {
     objectReady.forEach(player => {
         const [ number, name, position, grade] = player
         let playerId = number + team
-        console.log(playerId)
         let offPosition = position.slice(0,2)
         switch (offPosition) {
             case "OL":
                 constructedPlayer = new NonSkillPosition(number, name, position, grade, team)
                 playerObjects.push(constructedPlayer)
-                allPlayerObjects.push(constructedPlayer)
+                allPlayerObjects[playerId] = constructedPlayer
                 break;
             case "QB":
                 constructedPlayer = new QBPosition(number, name, position, grade, team)
                 playerObjects.push((constructedPlayer))
-                allPlayerObjects.push(constructedPlayer)
+                allPlayerObjects[playerId] = constructedPlayer
                 break;
             default:
                 constructedPlayer = new NonQbSkillPosition(number, name, position, grade, team)
                 playerObjects.push(constructedPlayer)
-                allPlayerObjects.push(constructedPlayer)
+                allPlayerObjects[playerId] = constructedPlayer
                 break;
         }
 

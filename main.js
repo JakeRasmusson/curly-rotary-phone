@@ -40,11 +40,11 @@ app.whenReady().then(() => {
         return
       }
       const readDataArray = JSON.parse(readData)
-      const dirtyPlayer = data.playerObject
-      const dirtyPlayerId = data.changedPlayerId
+      const dirtyPlayers = data.playerObject
+      console.log(dirtyPlayers)
       readDataArray.forEach(item => {
         if (item.playerId == dirtyPlayerId) {
-           //Todo ask jsoh for help replace curret json player with updates frmo front end
+           //Todo ask josh for help replace curret json player with updates frmo front end
         }
         
       });
