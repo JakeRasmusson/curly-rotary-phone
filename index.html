@@ -10,8 +10,8 @@
 </head>
 
 <body>
-  <div class="h-screen">
-    <div class="h-[10%] p-0 navbar bg-base-100 flex justify-between">
+  <div class="max-h-screen h-screen min-h-screen flex flex-col justify-evenly">
+    <div class="min-h-[10%] h-[10%] p-0 navbar bg-base-100 flex justify-between">
       <form class="text-red-500 bg-gray-500 bg-opacity-15" id="teamForm">
         <input name="teamCsv" type="file" required />
         <label class="mx-2" for="selectTeam-home">
@@ -29,26 +29,30 @@
         <p id="choosenFilePath"></p>
       </div>
     </div>
-    <div class="flex min-h-[90%] h-max border">
-      <div class="flex flex-col flex-6 min-w-[85%] bg-green-700 border-4 border-white text-sm">
+    <div class="flex min-h-[90%] h-[90%] border">
+      <div class="flex flex-col flex-1 min-w-[85%] max-w-[85%] bg-green-700 border-4 border-white text-sm">
         <div class="team-box flex-1 grid grid-cols-11 grid-rows-3 gap-2 p-2 border-b-8 border-white" id="homeTeam">
           <div class="">1</div>
           <div class="border-b-8 border-white">2</div>
           <div class="">3</div>
           <div class="">4</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">RB1</h2>
-              <p class="py-1 text-center">Home 22</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">RB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">6</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">RB2</h2>
-              <p class="py-1 text-center">Home 24</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">RB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">8</div>
@@ -61,10 +65,12 @@
           <div class="">15</div>
           <div class="">16</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 dropCards" ondrop="drop" ondragover="allowDrop" >
-              <h2 class="border-b-2 border-blue-500 text-center">QB</h2>
-              <p class="py-1 text-center">Home 4</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">QB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">18</div>
@@ -73,137 +79,171 @@
           <div class="border-b-8 border-white">21</div>
           <div class="">22</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">WR1</h2>
-              <p class="py-1 text-center">Home 80</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">WR</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">24</div>
           <div class="">25</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">RT</h2>
-              <p class="py-1 text-center">Home 77</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">RT</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">RG</h2>
-              <p class="py-1 text-center">Home 68</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">RG</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">C</h2>
-              <p class="py-1 text-center">Home 66</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">C</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">LG</h2>
-              <p class="py-1 text-center">Home 67</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">LG</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">LT</h2>
-              <p class="py-1 text-center">Home 75</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">LT</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">TE</h2>
-              <p class="py-1 text-center">Home 88</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">TE</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">32</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500">
-              <h2 class="border-b-2 border-blue-500 text-center">WR2</h2>
-              <p class="py-1 text-center">Home 85</p>
-              <p class="py-1 text-center">Jake Rasmussen</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-blue-500 player-card">
+              <div class="flex gap-1 border-b-2 border-blue-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">WR</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
         </div>
         <div class="team-box flex-1 grid grid-cols-11 grid-rows-3 gap-2 p-2 border-t-8 border-white" id="awayTeam">
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">CB</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">CB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">35</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">DL</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">37</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">DL</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">39</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">DL</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">41</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">DL</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">DL</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">43</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">CB</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">CB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">45</div>
           <div class="border-t-8 border-white">46</div>
           <div class="">47</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">LB</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">LB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">49</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">LB</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">LB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">51</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">LB</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">LB</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">53</div>
@@ -214,18 +254,22 @@
           <div class="">58</div>
           <div class="">59</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">FS</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">FS</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">61</div>
           <div class="">
-            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500">
-              <h2 class="border-b-2 border-red-500 text-center">SS</h2>
-              <p class="py-1 text-center">Away 4</p>
-              <p class="py-1 text-center">Kent Tuneberg</p>
+            <div class="w-full h-full bg-base-100 shadow-xl border-2 rounded border-red-500 player-card">
+              <div class="flex gap-1 border-b-2 border-red-500 text-center px-1 player-info">
+                <h2 class="basis-1/4 text-left">SS</h2>
+                <h2 class="basis-1/2 leading-none self-center text-center"></h2>
+                <h2 class="basis-1/4 text-right"></h2>
+              </div>
             </div>
           </div>
           <div class="">63</div>
@@ -234,17 +278,15 @@
           <div class="">66</div>
         </div>
       </div>
-      <div class="border min-h-full flex-1 flex flex-col max-w-[15%]">
-        <div class="flex-1 overflow-x-auto min-h-[50%]">
-          <table class="table table-zebra">
+      <div class="border min-h-full flex-1 flex flex-col max-w-[15%] min-w-[15%]">
+        <div class="basis-1/2 grow-0 overflow-y-scroll h-[50%]">
+          <table class="table-auto table-zebra w-full h-auto">
             <!-- head -->
-            <thead>
+            <thead class="w-full">
               <tr>
-                <th></th>
-                <th>Number</th>
+                <th>Num</th>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Grade</th>
+                <th>Pos</th>
               </tr>
             </thead>
             <tbody id="homeRoster">
@@ -252,16 +294,14 @@
             </tbody>
           </table>
         </div>
-        <div class="flex-1 overflow-x-auto min-h-[50%]">
-          <table class="table table-zebra">
+        <div class="basis-1/2 grow-0 overflow-y-scroll h-[50%]">
+          <table class="table-auto table-zebra w-full h-auto">
             <!-- head -->
             <thead>
               <tr>
-                <th></th>
-                <th>Number</th>
+                <th>Num</th>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Grade</th>
+                <th>Pos</th>
               </tr>
             </thead>
             <tbody id="awayRoster">

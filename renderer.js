@@ -184,19 +184,49 @@ const renderPlayerCards = (players, team) => {
     tableBody.innerHTML = ''
     players.forEach(player => {
         const playerId = player.playerId
-        const playerLi = document.createElement('div')
-        playerLi.innerHTML = `            <div draggable="true">
-        <tr>
-          <th>${player.jerseyNumber}</th>
-          <td>${player.name}</td>
-          <td>${player.position}</td>
-          <td>${player.grade}</td>
-        </tr>
-    </div>`
+        const playerLi = document.createElement('tr')
+        playerLi.innerHTML = `
+          <td class="text-center">${player.jerseyNumber}</td>
+          <td class="text-center">${player.name}</td>
+          <td class="text-center">${player.position}</td>
+`
         playerLi.id = `${playerId}`
+        // Drag listener and data to be passed to card
+        playerLi.draggable = "true"
+        playerLi.dataset.cardText = `
+        <h2 class="basis-1/4 text-left">${player.position}</h2>
+        <h2 class="basis-1/2 leading-none self-center text-center">${player.name}</h2>
+        <h2 class="basis-1/4 text-right">${player.jerseyNumber}</h2>`
+        playerLi.addEventListener('dragstart', drag)
         tableBody.appendChild(playerLi)
 
     });
 }
 
+// Can reorganize later - drop and drag functions and listeners
+const playerCards = document.querySelectorAll('.player-card')
 
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.dataset.cardText);
+    console.log(ev)
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    const firstDivChild = ev.currentTarget.querySelector('div:first-child');
+    firstDivChild.innerHTML = data;
+    console.log('drop!')
+}
+playerCards.forEach((playerCard) => {
+    playerCard.addEventListener('drop', drop)
+})
+
+playerCards.forEach((playerCard) => {
+    playerCard.addEventListener('dragover', allowDrop)
+})
