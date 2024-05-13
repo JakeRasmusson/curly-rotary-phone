@@ -7,7 +7,8 @@ const awayRosterBody = document.getElementById('awayRoster')
 const allPlayerObjects = {}
 let jsonFilePath = ''
 // const dirtyPlayers = []
-
+const dropCards = document.querySelectorAll('.dropCards')
+console.log(dropCards)
 chooseJsonLocationButton.addEventListener('click', async () => {
     const filePaths= await window.dataSaving.chooseJsonLocation()
     if (filePaths[0]) {
@@ -27,6 +28,11 @@ const updateJson = async (changedPlayerId, changedPlayerEvent) => {
     const jsonObject = {'jsonFilePath' : jsonFilePath,'changedPlayerId': changedPlayerId, 'changedPlayerEvent':changedPlayerEvent}
     const update = await window.dataSaving.updateJson(jsonObject)
 }
+
+dropCards.forEach(card => card.addEventListener('drop', (event => {
+    console.log(event.target)
+}))
+)
 
 form.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -179,7 +185,7 @@ const renderPlayerCards = (players, team) => {
     players.forEach(player => {
         const playerId = player.playerId
         const playerLi = document.createElement('div')
-        playerLi.innerHTML = `            <div>
+        playerLi.innerHTML = `            <div draggable="true">
         <tr>
           <th>${player.jerseyNumber}</th>
           <td>${player.name}</td>
