@@ -8602,21 +8602,8 @@ html:has(.drawer-open.drawer-open) {
   height: 10%;
 }
 
-.h-\[50\%\] {
-  height: 50%;
-}
-
-.h-fit {
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
 .h-full {
   height: 100%;
-}
-
-.h-screen {
-  height: 100vh;
 }
 
 .h-max {
@@ -8624,32 +8611,16 @@ html:has(.drawer-open.drawer-open) {
   height: max-content;
 }
 
-.h-\[100\%\] {
-  height: 100%;
-}
-
-.min-h-screen {
-  min-height: 100vh;
-}
-
-.min-h-\[\] {
-  min-height: ;
-}
-
-.min-h-\[90\] {
-  min-height: 90;
-}
-
-.min-h-\[90\$\] {
-  min-height: 90$;
-}
-
-.min-h-\[90\%\] {
-  min-height: 90%;
+.h-screen {
+  height: 100vh;
 }
 
 .min-h-\[50\%\] {
   min-height: 50%;
+}
+
+.min-h-\[90\%\] {
+  min-height: 90%;
 }
 
 .min-h-full {
@@ -8698,6 +8669,14 @@ html:has(.drawer-open.drawer-open) {
 
 .grow {
   flex-grow: 1;
+}
+
+.basis-1\/2 {
+  flex-basis: 50%;
+}
+
+.basis-1\/4 {
+  flex-basis: 25%;
 }
 
 .table-auto {
@@ -9212,6 +9191,10 @@ html:has(.drawer-open.drawer-open) {
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -9831,17 +9814,22 @@ html:has(.drawer-open.drawer-open) {
   padding: 0.5rem;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
 
-.pr-2 {
-  padding-right: 0.5rem;
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
-.pl-0 {
-  padding-left: 0px;
+.pr-2 {
+  padding-right: 0.5rem;
 }
 
 .text-left {
@@ -9975,6 +9963,14 @@ html:has(.drawer-open.drawer-open) {
 .stacked-fractions {
   --tw-numeric-fraction: stacked-fractions;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.leading-none {
+  line-height: 1;
 }
 
 .text-\[\#336699\]\/\[\.35\] {
