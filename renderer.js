@@ -5,10 +5,13 @@ const filePathP = document.getElementById('choosenFilePath')
 const homeRosterBody = document.getElementById('homeRoster')
 const awayRosterBody = document.getElementById('awayRoster')
 const allPlayerObjects = {}
+import { NonSkillPosition, QBPosition, NonQbSkillPosition } from './utils/playerObjects/index.js'
 let jsonFilePath = ''
 // const dirtyPlayers = []
 const dropCards = document.querySelectorAll('.dropCards')
-console.log(dropCards)
+
+
+
 chooseJsonLocationButton.addEventListener('click', async () => {
     const filePaths= await window.dataSaving.chooseJsonLocation()
     if (filePaths[0]) {
@@ -53,69 +56,6 @@ form.addEventListener('submit', (event) => {
     })
     reader.readAsText(file)
 })
-
-
-//Data parsing and player object creation
-class Player{
-    constructor(jerseyNumber, name, position, grade, team){
-        this.jerseyNumber   = jerseyNumber
-        this.name           = name
-        this.position       = position
-        this.grade          = grade
-        this.team           = team
-        this.playerId       = jerseyNumber + team
-    }
-}
-
-class SkillPosition extends Player{
-
-
-    constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, tackles, interceptions, passDefended, rushAttempts){
-        super(jerseyNumber, name, position, grade, team)
-        this.rushTouchdowns     = rushTouchdowns    || 0
-        this.rushAttempts       = rushAttempts      || 0
-        this.rushYards          = rushYards         || 0
-        this.tackles            = tackles           || 0
-        this.interceptions      = interceptions     || 0
-        this.passDefended       = passDefended      || 0
-    }
-
-}
-class QBPosition extends SkillPosition{
-    constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, interceptions, passAtt, passComp, passYards, passTouchdowns, tackles, passDefended, rushAttempts){
-        super(jerseyNumber, name, position, grade, team, rushYards, interceptions, rushAttempts, rushTouchdowns, passDefended, tackles)
-        this.passAtt            = passAtt            || 0
-        this.passComp           = passComp           || 0
-        this.passYards          = passYards          || 0
-        this.passTouchdowns     = passTouchdowns     || 0
-    }
-}
-
-class NonQbSkillPosition extends SkillPosition{
-    constructor(jerseyNumber, name, position, grade, team, rushTouchdowns, rushYards, tackles, interceptions, passDefended, rushAttempts, receptions, recYards, drops, recTouchdowns){
-        super(jerseyNumber, name, position, grade, team, rushYards, interceptions, rushTouchdowns, rushAttempts, rushTouchdowns, passDefended, tackles)
-        this.receptions         = receptions        || 0
-        this.recYards           = recYards          || 0
-        this.drops              = drops             || 0
-        this.recTouchdowns      = recTouchdowns     || 0
-    }
-}
-
-class NonSkillPosition extends Player{
-    // pancake         = 0
-    // sack            = 0
-    // tackle          = 0
-    // tackleForLoss   = 0
-
-    constructor(jerseyNumber, name, position, grade, team, pancake, sack, tackle, tackleForLoss){
-        super(jerseyNumber,name,position,grade, team)
-        this.pancake            = pancake           || 0
-        this.sack               = sack              || 0
-        this.tackle             = tackle            || 0
-        this.tackleForLoss      = tackleForLoss     || 0
-    }
-}
-
 
 const parseData = (data, team) => {
     const rowSplit = data.split('\n')
